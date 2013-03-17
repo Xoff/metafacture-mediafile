@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.culturegraph.audiofile.converter;
+package net.b3e.mf.mediafile.converter;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +34,7 @@ import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.TagField;
 import org.jaudiotagger.tag.TagTextField;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 /**
  * Reads metadata tags in audiofiles
@@ -44,26 +45,28 @@ import org.jaudiotagger.tag.TagTextField;
 @Description("Reads metadata tags in audiofiles")
 @In(String.class)
 @Out(StreamReceiver.class)
-public final class TagReader extends DefaultObjectPipe<String, StreamReceiver> {
+public final class AudioTagReader extends DefaultObjectPipe<String, StreamReceiver> {
 
+	{
+		// JAudiotagger uses java util logging but Metafacture aims 
+		// to do all logging via slf4j a bridge. Hence, log messages
+		// from JAudiotagger need to be intercepted and redirected:
+		if (!SLF4JBridgeHandler.isInstalled()) {
+			SLF4JBridgeHandler.removeHandlersForRootLogger();
+			SLF4JBridgeHandler.install();
+		}
+	}
+	
 	public void process(final String fileName) {
-		
 		final AudioFile file;
 		try {
 			file = AudioFileIO.read(new File(fileName));
-		} catch (CannotReadException e) {
-			throw new MetafactureException(e);
-		} catch (IOException e) {
-			throw new MetafactureException(e);
-		} catch (TagException e) {
-			throw new MetafactureException(e);
-		} catch (ReadOnlyFileException e) {
-			throw new MetafactureException(e);
-		} catch (InvalidAudioFrameException e) {
+		} catch (CannotReadException|IOException|TagException
+				|ReadOnlyFileException|InvalidAudioFrameException e) {
 			throw new MetafactureException(e);
 		}
 		
-		getReceiver().startRecord(null);
+		getReceiver().startRecord("");
 		final Tag tag = file.getTag();
 		if (tag != null) {
 			final Iterator<TagField> it = tag.getFields(); 
@@ -77,4 +80,5 @@ public final class TagReader extends DefaultObjectPipe<String, StreamReceiver> {
 		}
 		getReceiver().endRecord();
 	}
+
 }

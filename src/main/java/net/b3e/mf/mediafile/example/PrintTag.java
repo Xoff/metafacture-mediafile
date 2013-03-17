@@ -13,9 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.culturegraph.audiofile.example;
+package net.b3e.mf.mediafile.example;
 
-import org.culturegraph.audiofile.converter.TagReader;
+import net.b3e.mf.mediafile.converter.AudioTagReader;
+
 import org.culturegraph.mf.stream.converter.FormetaEncoder;
 import org.culturegraph.mf.stream.converter.FormetaEncoder.Style;
 import org.culturegraph.mf.stream.sink.ObjectStdoutWriter;
@@ -38,7 +39,7 @@ public final class PrintTag {
 			System.exit(-1);
 		}
 		
-		final TagReader tagReader = new TagReader();
+		final AudioTagReader tagReader = new AudioTagReader();
 		final FormetaEncoder encoder = new FormetaEncoder();
 		encoder.setStyle(Style.MULTILINE);
 		final ObjectStdoutWriter<String> writer = new ObjectStdoutWriter<>();
