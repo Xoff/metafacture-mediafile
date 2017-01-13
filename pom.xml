@@ -1,24 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
 	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
 	<groupId>net.b3e</groupId>
 	<artifactId>metafacture-mediafile</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+
 	<description>Metafacture modules for accessing metadata in media files</description>
+	<url>http://github.com/cboehme/metafacture-mediafile</url>
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
 			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
-	<url>http://github.com/cboehme/metafacture-mediafile</url>
-	<scm>
-		<connection>scm:git:git://github.com/cboehme/metafacture-mediafile.git</connection>
-		<developerConnection>scm:git:git@github.com:cboehme/metafacture-mediafile.git</developerConnection>
-		<url>http://github.com/cboehme/metafacture-mediafile</url>
-		<tag>HEAD</tag>
-	</scm>
+
 	<developers>
 		<developer>
 			<id>cboehme</id>
@@ -33,12 +36,12 @@
 		</developer>
 	</developers>
 
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
-
+	<scm>
+		<connection>scm:git:git://github.com/cboehme/metafacture-mediafile.git</connection>
+		<developerConnection>scm:git:git@github.com:cboehme/metafacture-mediafile.git</developerConnection>
+		<url>http://github.com/cboehme/metafacture-mediafile</url>
+		<tag>HEAD</tag>
+	</scm>
 	<distributionManagement>
 		<repository>
 			<id>sonatype-nexus-staging</id>
@@ -57,6 +60,32 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<targetJdk>1.7</targetJdk>
 	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.culturegraph</groupId>
+			<artifactId>metafacture-core</artifactId>
+			<version>0.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org</groupId>
+			<artifactId>jaudiotagger</artifactId>
+			<version>2.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -95,32 +124,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.culturegraph</groupId>
-			<artifactId>metafacture-core</artifactId>
-			<version>0.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org</groupId>
-			<artifactId>jaudiotagger</artifactId>
-			<version>2.0.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jul-to-slf4j</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-	</dependencies>
 
 	<profiles>
 		<profile>
