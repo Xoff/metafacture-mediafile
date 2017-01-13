@@ -19,12 +19,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
-import org.culturegraph.mf.exceptions.MetafactureException;
-import org.culturegraph.mf.framework.DefaultObjectPipe;
+import org.culturegraph.mf.framework.MetafactureException;
 import org.culturegraph.mf.framework.StreamReceiver;
 import org.culturegraph.mf.framework.annotations.Description;
 import org.culturegraph.mf.framework.annotations.In;
 import org.culturegraph.mf.framework.annotations.Out;
+import org.culturegraph.mf.framework.helpers.DefaultObjectPipe;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
@@ -38,7 +38,7 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 
 /**
  * Reads metadata tags in audiofiles
- * 
+ *
  * @author Christoph Böhme
  *
  */
@@ -48,7 +48,7 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 public final class AudioTagReader extends DefaultObjectPipe<String, StreamReceiver> {
 
 	{
-		// JAudiotagger uses java util logging but Metafacture aims 
+		// JAudiotagger uses java util logging but Metafacture aims
 		// to do all logging via slf4j a bridge. Hence, log messages
 		// from JAudiotagger need to be intercepted and redirected:
 		if (!SLF4JBridgeHandler.isInstalled()) {
@@ -56,7 +56,7 @@ public final class AudioTagReader extends DefaultObjectPipe<String, StreamReceiv
 			SLF4JBridgeHandler.install();
 		}
 	}
-	
+
 	public void process(final String fileName) {
 		final AudioFile file;
 		try {
@@ -65,11 +65,11 @@ public final class AudioTagReader extends DefaultObjectPipe<String, StreamReceiv
 				|ReadOnlyFileException|InvalidAudioFrameException e) {
 			throw new MetafactureException(e);
 		}
-		
+
 		getReceiver().startRecord("");
 		final Tag tag = file.getTag();
 		if (tag != null) {
-			final Iterator<TagField> it = tag.getFields(); 
+			final Iterator<TagField> it = tag.getFields();
 			while(it.hasNext()) {
 				final TagField tf = it.next();
 				if (tf instanceof TagTextField) {

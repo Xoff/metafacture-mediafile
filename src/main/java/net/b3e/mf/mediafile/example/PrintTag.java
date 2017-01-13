@@ -15,39 +15,38 @@
  */
 package net.b3e.mf.mediafile.example;
 
-import net.b3e.mf.mediafile.converter.AudioTagReader;
+import org.culturegraph.mf.formeta.FormetaEncoder;
+import org.culturegraph.mf.formeta.formatter.FormatterStyle;
+import org.culturegraph.mf.io.ObjectStdoutWriter;
 
-import org.culturegraph.mf.stream.converter.FormetaEncoder;
-import org.culturegraph.mf.stream.converter.FormetaEncoder.Style;
-import org.culturegraph.mf.stream.sink.ObjectStdoutWriter;
+import net.b3e.mf.mediafile.converter.AudioTagReader;
 
 /**
  * Prints the id3 tag of an mp3 file.
- * 
- * @author christoph
  *
+ * @author Christoph Böhme
  */
 public final class PrintTag {
 
 	private PrintTag() {
 		// No instances allowed
 	}
-	
+
 	public static void main(final String[] args) {
 		if (args.length < 1) {
 			System.out.println("Usage: PrintTag FILE");
 			System.exit(-1);
 		}
-		
+
 		final AudioTagReader tagReader = new AudioTagReader();
 		final FormetaEncoder encoder = new FormetaEncoder();
-		encoder.setStyle(Style.MULTILINE);
+		encoder.setStyle(FormatterStyle.MULTILINE);
 		final ObjectStdoutWriter<String> writer = new ObjectStdoutWriter<>();
-		
+
 		tagReader
 				.setReceiver(encoder)
 				.setReceiver(writer);
-		
+
 		tagReader.process(args[0]);
 		tagReader.closeStream();
 	}
