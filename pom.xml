@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.b3e</groupId>
 	<artifactId>metafacture-mediafile</artifactId>
-	<version>0.0.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<description>Metafacture modules for accessing metadata in media files</description>
 	<licenses>
 		<license>
@@ -12,19 +12,19 @@
 			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
-	<url>http://github.com/Xoff/metafacture-mediafile</url>
+	<url>http://github.com/cboehme/metafacture-mediafile</url>
 	<scm>
-		<connection>scm:git:git://github.com/Xoff/metafacture-mediafile.git</connection>
-		<developerConnection>scm:git:git@github.com:Xoff/metafacture-mediafile.git</developerConnection>
-		<url>http://github.com/Xoff/metafacture-mediafile</url>
+		<connection>scm:git:git://github.com/cboehme/metafacture-mediafile.git</connection>
+		<developerConnection>scm:git:git@github.com:cboehme/metafacture-mediafile.git</developerConnection>
+		<url>http://github.com/cboehme/metafacture-mediafile</url>
 		<tag>HEAD</tag>
 	</scm>
 	<developers>
 		<developer>
-			<id>Xoff</id>
+			<id>cboehme</id>
 			<name>Christoph Böhme</name>
 			<email>christoph@b3e.net</email>
-			<url>https://github.com/Xoff</url>
+			<url>https://github.com/cboehme</url>
 			<roles>
 				<role>architect</role>
 				<role>developer</role>
